@@ -7,8 +7,8 @@
 
 #ifndef ESTACION_H_
 #define ESTACION_H_
-#include "Cola.h";
-#include "Patinete.h";
+#include "Cola.h"
+#include "Patinete.h"
 using namespace std;
 #include <iostream>
 #include <string>

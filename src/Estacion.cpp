@@ -47,10 +47,10 @@ Estacion::Estacion(const Estacion &OtraEstacion)
 			Aux->desencolar();
 
 			}
-		delete Aux;
+
 		this->PatineteAveriado=	new Cola<Patinete *>;
-		Cola <Patinete *> *Aux= new Cola<Patinete *>;
-		Patinete *p=nullptr;
+
+
 		while(!OtraEstacion.PatineteAveriado->estaVacia())
 			{
 			p=OtraEstacion.PatineteAveriado->getPrimero();

@@ -8,6 +8,7 @@
 #ifndef COLA_H_
 #define COLA_H_
 #include <iostream>
+
 using namespace std;
 
 template <class TipoDato> class Cola {
