@@ -5,16 +5,12 @@
  *      Author: Manuel
  */
 #include "PruebasSistemas.h"
-void Pruebas()
+void PruebasSistema()
 	{
-	string NombreSistema;
-	NombreSistema="Prueba";
-	Sistema *S1;
-	S1=new Sistema(NombreSistema);
-
-	S1->mostrarUsuario();
-	delete S1;
-
+	//Prueba de la clase Sistema
+	//Prueba 1: Sistema por defecto
+	Sistema *s=new Sistema();
+	delete s;
 	}
 
 

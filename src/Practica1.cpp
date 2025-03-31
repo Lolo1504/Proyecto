@@ -121,7 +121,7 @@ void BorrarVector(Tvector &v)
 
 
 int main() {
-	PruebaUsuario();/*
+	/*PruebaUsuario();
 	PruebaCuentaBancaria();
 		Tvector v;
 	leerFichero(v);
@@ -129,9 +129,8 @@ int main() {
 	MayorEdad(v,26);
 	Inverso();
 	BorrarVector(v);
-	Pruebas();
-	PruebaPatinete();
-	*/
+	PruebaPatinete();*/
+	PruebasSistema();
 
 	return 0;
 }
