@@ -16,12 +16,12 @@ GestorUsuario::GestorUsuario(const GestorUsuario &OtroGestor)
 	this->lUsuario=new ListaDPI<Usuario*>;
 	OtroGestor.lUsuario->moverPrimero();
 	Usuario *u=nullptr;
-	Usuario *Copia=nullptr;
+
 	while(!OtroGestor.lUsuario->alFinal())
 	{
 		u=OtroGestor.lUsuario->consultar();
-		Copia=new Usuario(*u);
-		lUsuario->insertar(Copia);
+
+		lUsuario->insertar(new Usuario(*u));
 		OtroGestor.lUsuario->avanzar();
 	}
 	this->contador=OtroGestor.contador;
@@ -32,6 +32,14 @@ void GestorUsuario::Insertar(string NombreCompleto, string Telefono, int Edad, s
 	bool posicion=false;
 	lUsuario->moverPrimero();
 	Usuario *u=nullptr;
+	if(lUsuario->estaVacia())
+		{
+		u=new Usuario(NombreCompleto,Telefono,Edad,NumeroCuenta,saldo,DNI,Email);
+				lUsuario->insertar(u);
+				contador++;
+		}
+	else
+	{
 	while(!lUsuario->alFinal()&& !enc && !posicion)
 		{
 		u=lUsuario->consultar();
@@ -56,6 +64,7 @@ void GestorUsuario::Insertar(string NombreCompleto, string Telefono, int Edad, s
 		lUsuario->insertar(u);
 		contador++;
 		}
+	}
 		}
 int GestorUsuario::NumElementos()
 	{
@@ -65,9 +74,9 @@ void GestorUsuario::Mostrar()
 	{
 	Usuario *u=nullptr;
 	lUsuario->enPrimero();
-	while(lUsuario->alFinal())
-	{	u=lUsuario->consultar();
-		cout<<"DNI: "<<u->GetDNI()<<" Nombre: "<< u->GetNombreCompleto()<<" Telefono: "<<u->GetTelefono()<< "Edad: "<< u->GetEdad()<<"Email: "<<u->GetEmail()<<"NumeroCuenta: "<<u->GetNumeroCuenta()<<"Saldo de la cuenta: "<<u->GetSaldo() <<endl;
+	while(!lUsuario->alFinal())
+	{	lUsuario->consultar(u);
+	u->Mostrar();
 		lUsuario->avanzar();
 	}
 
@@ -80,9 +89,8 @@ GestorUsuario::~GestorUsuario() {
 		u=lUsuario->consultar();
 		delete u;
 		lUsuario->eliminar();
-		contador--;
-
 		}
+	contador=0;
 	delete lUsuario;
 }
 

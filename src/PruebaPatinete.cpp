@@ -28,7 +28,6 @@ void PruebaPatinete()
 		P1->SetDisponible(true);
 		P1->Alquilar(user1);
 		cout<< user1->GetNombreCompleto()<<endl;
-		cout << P1->GetNombreCompleto()<<endl;
 		P1->Mostrar();
 		Patinete *P2;
 		P2=new Patinete();

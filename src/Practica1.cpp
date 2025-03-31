@@ -10,8 +10,10 @@
 using namespace std;
 #include "PruebaUsuario.h"
 #include <cmath>
+#include <string>
 #include "PruebaCuentaBancaria.h"
 #include "PruebaPatinete.h"
+#include "PruebasSistemas.h"
 #include "Usuario.h"
 #include <fstream>
 const int TAM=242;
@@ -121,12 +123,14 @@ void BorrarVector(Tvector &v)
 int main() {/*
 	PruebaUsuario();
 	PruebaCuentaBancaria();
-	PruebaPatinete();*/
-	Tvector v;
+		Tvector v;
 	leerFichero(v);
 	MostrarVector(v);
 	MayorEdad(v,26);
 	Inverso();
 	BorrarVector(v);
+	Pruebas();*/
+	PruebaPatinete();
+
 	return 0;
 }

@@ -38,10 +38,10 @@ public:
 	void SetModelo(string Modelo);
 	void SetAveriado(bool Averiado);
 	void SetDisponible(bool Disponible);
-	void Alquilar(Usuario* user);
+	void Alquilar(Usuario* user );
 
 	void Mostrar();
-	bool operator ==(const Patinete &OtroPatinete) const;
+	bool operator ==(const Patinete &OtroPatinete) ;
 	virtual ~Patinete();
 };
 

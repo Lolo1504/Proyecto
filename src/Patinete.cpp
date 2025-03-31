@@ -56,14 +56,6 @@ bool Patinete::GetDisponible()
 	{
 	return Disponible;
 	}
-string Patinete::GetDNI()
-	{
-	return UsuarioActual->GetDNI();
-	}
-string Patinete::GetNombreCompleto() const
-	{
-	return UsuarioActual->GetNombreCompleto();
-	}
 //Metodos Sets
 void  Patinete::SetID(string ID)
 	{
@@ -96,21 +88,23 @@ void Patinete::Mostrar()
 	if(GetAveriado())
 		Averiado="Esta averiado";
 	if(!GetDisponible()){
-		cout<<"ID:" <<GetID() <<" Marca:"<<GetMarca()<<" Modelo: "
-				<<GetModelo()<<" Averiado:"<<Averiado<<" Disponible:" <<endl
-				<<"No esta Disponible"<<" Nombre del Usuario:"<<GetNombreCompleto()<<" Dni:"<<GetDNI() <<endl;
+		cout<<"ID: "<<GetID()<<endl <<"Marca: "<<GetMarca()<<endl<<
+				"Modelo: "<<GetModelo()<<endl<<"Averiado:"<<Averiado<<endl<<
+				"Disponible: "<<"No esta Disponible"<<endl<<
+				"Nombre del Usuario: "<<UsuarioActual->GetNombreCompleto()<<endl<<
+				"Dni: "<<UsuarioActual->GetDNI() <<endl;
 	}
 	else
 		{
-		cout<<"ID:" <<GetID() <<" Marca:"<<GetMarca()<<" Modelo:" <<GetModelo()<<" Averiado:"<<Averiado<<" Disponible:"
+		cout<<"ID:" <<GetID()<<endl <<"Marca:"<<GetMarca()<<endl<<"Modelo: " <<GetModelo()<<endl<< "Averiado: "<<Averiado<<endl<<"Disponible: "
 						<<"Esta Disponible"<<endl;
 		}
 	}
-bool Patinete::operator ==(const Patinete &OtroPatinete)const
+bool Patinete::operator ==(const Patinete &OtroPatinete)
 		{
 			return GetID()==OtroPatinete.GetID();
 		}
 Patinete::~Patinete() {
-	// TODO Auto-generated destructor stub
+
 }
 
