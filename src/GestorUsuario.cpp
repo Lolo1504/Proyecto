@@ -59,7 +59,7 @@ void GestorUsuario::Insertar(string NombreCompleto, string Telefono, int Edad, s
 			}
 		}
 		}
-		if(posicion){
+		if(posicion || !enc){
 		u=new Usuario(NombreCompleto,Telefono,Edad,NumeroCuenta,saldo,DNI,Email);
 		lUsuario->insertar(u);
 		contador++;
@@ -73,7 +73,7 @@ int GestorUsuario::NumElementos()
 void GestorUsuario::Mostrar()
 	{
 	Usuario *u=nullptr;
-	lUsuario->enPrimero();
+	lUsuario->moverPrimero();
 	while(!lUsuario->alFinal())
 	{	lUsuario->consultar(u);
 	u->Mostrar();

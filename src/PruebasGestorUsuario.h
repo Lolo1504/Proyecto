@@ -10,6 +10,6 @@
 
 
 
-
+void PruebasGestor();
 
 #endif /* PRUEBASGESTOSUSUARIO_H_ */

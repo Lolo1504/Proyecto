@@ -14,6 +14,7 @@ using namespace std;
 #include "PruebaCuentaBancaria.h"
 #include "PruebaPatinete.h"
 #include "PruebasSistemas.h"
+#include "PruebasGestorUsuario.h"
 #include "Usuario.h"
 #include <fstream>
 const int TAM=242;
@@ -131,6 +132,7 @@ int main() {
 	BorrarVector(v);
 	PruebaPatinete();*/
 	PruebasSistema();
+	//PruebasGestor();
 
 	return 0;
 }

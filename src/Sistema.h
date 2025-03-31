@@ -14,7 +14,7 @@
  class Sistema {
  private:
 	 string nombreSistema;
-	 GestorUsuario *Usuarios;
+	 GestorUsuario *lUsuarios;
 	 ListaDPI <Patinete *> *lPatinete;
 	 ListaDPI<Estacion*> *lEstacion;
  

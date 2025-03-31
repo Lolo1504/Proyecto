@@ -10,7 +10,12 @@ void PruebasSistema()
 	//Prueba de la clase Sistema
 	//Prueba 1: Sistema por defecto
 	Sistema *s=new Sistema();
+	s->mostrarUsuarios();
+	cout << "Prueba constructor por copia"<<endl;
+	Sistema *s1= new Sistema(*s);
+	s1->mostrarUsuarios();
 	delete s;
+	delete s1;
 	}
 
 
