@@ -16,7 +16,7 @@ Usuario::Usuario() {
 	NombreCompleto= " ";
 	Telefono= " ";
 	Edad = 0;
-	CuentaB = new CuentaBancaria();
+	CuentaB = nullptr;
 	DNI=" ";
 	Email="";
 }
@@ -57,13 +57,14 @@ int Usuario::GetEdad() const
 	{
 	return Edad;
 	}
-string Usuario::GetNumeroCuenta()
-	{
-	return CuentaB->GetNumeroCuenta();
-	}
-float Usuario::GetSaldo()
+
+float Usuario::ConsultarSaldo()const
 	{
 	return CuentaB->GetSaldo();
+	}
+string Usuario::ConsultarNumeroCuenta()const
+	{
+	return CuentaB->GetNumeroCuenta();
 	}
 string Usuario::GetDNI()
 	{
@@ -86,9 +87,10 @@ void Usuario::SetEdad(int Edad)
 	{
 		this->Edad=Edad;
 	}
-void Usuario::SetNumeroCuenta(string NumeroCuenta)
+void Usuario::CrearCuentaB(string NumeroCuenta,float Saldo)
 	{
-	CuentaB->SetNumeroCuenta(NumeroCuenta);
+	if(CuentaB==nullptr)
+		CuentaB=new CuentaBancaria(NumeroCuenta,Saldo);
 	}
 void Usuario::IngresarSaldo(float Saldo)
 	{
@@ -106,10 +108,7 @@ void Usuario::SetEmail(string Email)
 	{
 	this->Email=Email;
 	}
-void Usuario::IngresarSaldo(int Saldo)
-	{
-		CuentaB->IngresarSaldo(Saldo);
-	}
+
 //Mostrar
 void Usuario::Mostrar()
 	{
@@ -123,8 +122,8 @@ string Usuario::PasarACadena()
 	{
 	string cadena, cadena2;
 	cadena = to_string(GetEdad());
-	cadena2= to_string(CuentaB->GetSaldo());
-	return  "Nombre: " + GetNombreCompleto() +" Telefono: " + GetTelefono() +" Edad: "+cadena + " DNI: " + GetDNI()+ " Email: " + GetEmail()+ " Numero de cuenta: " + CuentaB->GetNumeroCuenta()+ " Saldo: "+ cadena2 ;
+	cadena2= to_string(ConsultarSaldo());
+	return  "Nombre: " + GetNombreCompleto() +" Telefono: " + GetTelefono() +" Edad: "+cadena + " DNI: " + GetDNI()+ " Email: " + GetEmail()+ " Numero de cuenta: " + ConsultarNumeroCuenta()+ " Saldo: "+ cadena2 ;
 	}
 
 //Desctrcutor

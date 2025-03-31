@@ -75,8 +75,8 @@ void MayorEdad(Tvector v,int edad)
 					Cadena[2]=v[i]->GetEmail();
 					Cadena[3]=v[i]->GetTelefono();
 					Cadena[4]=to_string(v[i]->GetEdad());
-					Cadena[5]=v[i]->GetNumeroCuenta();
-					Cadena[6]=to_string((int)v[i]->GetSaldo());
+					Cadena[5]=v[i]->ConsultarNumeroCuenta();
+					Cadena[6]=to_string((int)v[i]->ConsultarSaldo());
 					f<<Cadena[0]<<';'<< Cadena[1]<<';'<< Cadena[2]<<';'<< Cadena[3]<<';'<< Cadena[4]<<';'<< Cadena[5]<<';'<< Cadena[6]<<'\n';
 					}
 
@@ -120,8 +120,8 @@ void BorrarVector(Tvector &v)
 	}
 
 
-int main() {/*
-	PruebaUsuario();
+int main() {
+	PruebaUsuario();/*
 	PruebaCuentaBancaria();
 		Tvector v;
 	leerFichero(v);
@@ -129,8 +129,9 @@ int main() {/*
 	MayorEdad(v,26);
 	Inverso();
 	BorrarVector(v);
-	Pruebas();*/
+	Pruebas();
 	PruebaPatinete();
+	*/
 
 	return 0;
 }

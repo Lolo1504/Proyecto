@@ -34,20 +34,19 @@ public:
 	void GetNombreCompleto(string &NombreCompleto)const;
 	string GetTelefono()const;
 	int GetEdad()const;
-	string GetNumeroCuenta();
-	float GetSaldo();
+	float ConsultarSaldo() const;
+	string ConsultarNumeroCuenta()const;
 	string GetDNI();
 	string GetEmail();
 	//Sets
 	void SetNombreCompleto(string NombreCompleto);
 	void SetTelefono(string Telefono);
 	void SetEdad(int Edad);
-	void SetNumeroCuenta(string NumeroCuenta);
+	void CrearCuentaB(string NumeroCuenta,float Saldo);
 	void IngresarSaldo(float Saldo);
 	void RetirarSaldo (float Saldo);
 	void SetDNI(string DNI);
 	void SetEmail(string Email);
-	void IngresarSaldo(int Saldo);
 	//mostrar
 	void Mostrar();
 	//PasarAcadena

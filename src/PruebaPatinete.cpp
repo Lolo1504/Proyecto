@@ -13,7 +13,7 @@ void PruebaPatinete()
 	{
 		Patinete *P1;
 		P1=new Patinete;
-		Usuario *user1;
+		Usuario *user1 ;
 		user1=new Usuario;
 			string NombreCompleto ;
 			user1->SetNombreCompleto("Manuel Lagar Frutos");
