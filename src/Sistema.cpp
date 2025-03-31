@@ -232,22 +232,26 @@
  
  Sistema::~Sistema() {
 	 delete Usuarios;
+	 Patinete *P = nullptr;
 	 if (lPatinete!=nullptr)
 		 {
 		 lPatinete->moverPrimero();
 		 while(!lPatinete->estaVacia())
 			 {
-			 delete lPatinete->consultar();
+			 P = lPatinete->consultar();
+			 delete P;
 			 lPatinete->eliminar();
 			 }
 		 }
 	 delete lPatinete;
+	 Estacion *E = nullptr;
 	 if (lEstacion!=nullptr)
 		 {
 		 lEstacion->moverPrimero();
 		 while(!lEstacion->estaVacia())
 			 {
-			 delete lEstacion->consultar();
+			 E = lEstacion->consultar();
+			 delete E;
 			 lEstacion->eliminar();
 			 }
 		 }
