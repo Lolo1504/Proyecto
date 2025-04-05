@@ -12,9 +12,11 @@ using namespace std;
 
 
 void PruebaUsuario()
-	{
+	{//En esta priera prueba creamos un usuario con el constructor por defecto y usaremos los metodos de set y get para
+	//comporbar su funcionamiento
 	Usuario user1;
 	string NombreCompleto ;
+
 	user1.SetNombreCompleto("Juan Jose Galindo Cotano");
 	user1.SetTelefono("+34 699 99 25 24");
 	user1.SetEdad(21);
@@ -44,7 +46,7 @@ void PruebaUsuario()
 		cerr<<"Error en la consulta del numero de cuenta"<<endl;
 
 
-		user1.Mostrar();
+	user1.Mostrar();
 
 	user1.IngresarSaldo(1000);
 	if(user1.ConsultarSaldo()!=1000)
@@ -57,13 +59,15 @@ void PruebaUsuario()
 		cerr <<"Error a la hora de retirar saldo"<<endl;
 		}
 
+		cout <<user1.PasarACadena()<<endl;
 
 
-	cout <<user1.PasarACadena()<<endl;
-	   Usuario user2("Alberto Chamizo ","685 60 86 61", 21,"PrommiseFC",10000,"099809890F","Albertoch@gmail.com");
-
-	   cout <<"Prueba del constructor por copia, la informacion del usuario 1 y el 3 deberia ser la misma"<<endl;
-	   Usuario user3(user1);
+		//Aqui probaremos el constrcutor parametrizado y lo mostraremos para asegurarnos que se a creado correcamente
+		Usuario user2("Alberto Chamizo ","685 60 86 61", 21,"PrommiseFC",10000,"099809890F","Albertoch@gmail.com");
+		user2.Mostrar();
+		//Acontinuacion probaremos el constructor por copia y lo mostraremos deberia contener la misma informacion que el usuario 2
+	   cout <<"Prueba del constructor por copia, la informacion del usuario 2 y el 3 deberia ser la misma"<<endl;
+	   Usuario user3(user2);
 	   user3.Mostrar();
 
 
