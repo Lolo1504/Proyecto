@@ -67,6 +67,14 @@
 		 delete Aux;
  
 	 }
+ int Estacion::getNumAveriados()
+ 	 {
+	 return NumAveriados;
+ 	 }
+ int Estacion::getNumDisponibles()
+ 	 {
+	 return NumDisponibles;
+ 	 }
  void Estacion::agregarPatinete(Patinete *p)
 	 {
 	 if(p->GetAveriado())
@@ -94,8 +102,8 @@
 		 PatineteAveriado->encolar(Aux->getPrimero());
 		 Aux->desencolar();
 		 }
-	 //Hacer: Usar el metodo Get numPatinetesAveriados para mostrar el numero de patinetes
-	 //cout << "Hay "<< <<endl;
+
+	 cout << "Hay "<< getNumAveriados()<<endl;
 	 delete Aux;
 	 }
  
@@ -132,8 +140,8 @@ void Estacion::MostrarDisponibles() {
 		 PatineteDisponible->encolar(Aux->getPrimero());
 		 Aux->desencolar();
 		 }
-	 //Hacer: Usar el metodo Get numPatinetesAveriados para mostrar el numero de patinetes
-	 //cout << "Hay "<< <<endl;ss
+
+	 cout << "Hay "<<getNumDisponibles() <<endl;
 	 delete Aux;
 }
 

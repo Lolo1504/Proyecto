@@ -26,6 +26,8 @@
 	 Estacion();
 	 Estacion(string Id, string direccion);
 	 Estacion(const Estacion &OtraEstacion);
+	 int getNumDisponibles();
+	 int getNumAveriados();
 	 string ConsultarId();
 	 bool ConsultarDisponible();
 	 void agregarPatinete(Patinete *p);

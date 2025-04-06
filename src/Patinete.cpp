@@ -85,6 +85,12 @@ void Patinete::Alquilar(Usuario* user )
 void Patinete::Mostrar()
 	{
 	string Averiado=" No esta averiado";
+	string DNI="No tiene",Nombre ="No tiene";
+	if(UsuarioActual!=NULL)
+		{
+		Nombre=UsuarioActual->GetNombreCompleto();
+		DNI=UsuarioActual->GetDNI();
+		}
 	if(GetAveriado())
 		Averiado="Esta averiado";
 	if(!GetDisponible())
@@ -92,9 +98,8 @@ void Patinete::Mostrar()
 		cout<<"ID: "<<GetID()<<endl <<"Marca: "<<GetMarca()<<endl<<
 				"Modelo: "<<GetModelo()<<endl<<"Averiado:"<<Averiado<<endl<<
 				"Disponible: "<<"No esta Disponible"<<endl<<
-
-				"Nombre del Usuario: "<<UsuarioActual->GetNombreCompleto()<<endl<<
-				"Dni: "<<UsuarioActual->GetDNI() <<endl;
+				"Nombre del Usuario: "<<Nombre<<endl<<
+				"Dni: "<< DNI <<endl;
 	}
 	else
 		{

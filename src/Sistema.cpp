@@ -16,6 +16,8 @@
  this->lPatinete=new ListaDPI<Patinete*>;
  cargarUsuarios();
  cargarPatinetes();
+ cargarEstacion();
+ distribuirPatinetesEnEstaciones();
  }
  
  Sistema::Sistema() {
@@ -229,7 +231,7 @@ void Sistema::distribuirPatinetesEnEstaciones() {
 		cout << "No se pudo abrir el fichero" << endl;
 	}
 }
-
+/*
 void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
 		string EstacionDevolver) {
 	Usuario *usu = nullptr;
@@ -287,7 +289,7 @@ void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
 		cout << "Usuario no encontrado." << endl;
 	}
 }
-
+*/
  Sistema::~Sistema() {
 	 delete lUsuarios;
 	 Patinete *P = nullptr;
