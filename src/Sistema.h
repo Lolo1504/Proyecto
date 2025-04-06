@@ -21,6 +21,8 @@
 	 void cargarUsuarios();
 	 void cargarEstacion();
 	 void cargarPatinetes();
+	 void distribuirPatinetesEnEstaciones();
+	 void alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI, string EstacionDevolver);
  public:
 	 Sistema();
 	 Sistema(string nombreSistema);
@@ -31,8 +33,8 @@
 	 void mostrarUsuarios();
 	 void mostrarPatinetes();
 	 void mostrarEstaciones();
- 
- 
+
+     void agregarPatineteEnEstacion(string idPatinete, string idEstacion);
 	 void insertarEstacion(string id, string nombre);
 	 void insertarPatinete(string id, string marca,string modelo,bool averiado,bool disponible);
  

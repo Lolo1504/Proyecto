@@ -107,6 +107,48 @@
 	 cout << " Numero de patinetes averiados: "<<this->NumAveriados<<endl;
 	 }
  
+ string Estacion::ConsultarId()
+	 {
+	 return this->identificador;
+	 }
+
+bool Estacion::ConsultarDisponible() {
+	 return this->NumDisponibles>0;
+ }
+
+
+void Estacion::MostrarDisponibles() {
+	 Cola<Patinete*> *Aux=new Cola<Patinete*>;
+	 Patinete *p;
+	 while(!PatineteDisponible->estaVacia()){
+		 p=PatineteDisponible->getPrimero();
+
+		 Aux->encolar(p);
+		 PatineteDisponible->desencolar();
+		 p->Mostrar();
+	 }
+	 while(!Aux->estaVacia())
+		 {
+		 PatineteDisponible->encolar(Aux->getPrimero());
+		 Aux->desencolar();
+		 }
+	 //Hacer: Usar el metodo Get numPatinetesAveriados para mostrar el numero de patinetes
+	 //cout << "Hay "<< <<endl;ss
+	 delete Aux;
+}
+
+Patinete Estacion::alquilarPatinete() {
+	if (ConsultarDisponible()) {
+		Patinete *p = PatineteDisponible->getPrimero();
+		PatineteDisponible->desencolar();
+		this->NumDisponibles--;
+		return *p;
+	} else {
+		cout << "No hay patinetes disponibles en la estacion." << endl;
+		return Patinete(); // Retorna un patinete vacío o nulo
+	}
+}
+
  Estacion::~Estacion() {
 	 delete PatineteAveriado;
 	 delete PatineteDisponible;

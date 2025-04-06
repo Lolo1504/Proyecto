@@ -25,6 +25,8 @@
 	 this->lPatinete=new ListaDPI<Patinete*>;
 	 cargarPatinetes();
 	 this->lEstacion=new ListaDPI<Estacion*>;
+	 cargarEstacion();
+	 distribuirPatinetesEnEstaciones();
  }
  
  Sistema::Sistema(const Sistema &other)
@@ -208,7 +210,84 @@
 		 lEstacion->avanzar();
 		 }
  }
- 
+
+void Sistema::distribuirPatinetesEnEstaciones() {
+	ifstream fEnt;
+	string linea, idEstacion, idPatinete;
+	fEnt.open("ficheros/distribucionPatinetes.csv");
+	if (fEnt.is_open()) {
+		getline(fEnt, linea);
+		while (!fEnt.eof()) {
+			getline(fEnt, idEstacion, ';');
+			if (!fEnt.eof()) {
+				getline(fEnt, idPatinete);
+				agregarPatineteEnEstacion(idPatinete, idEstacion);
+			}
+		}
+		fEnt.close();
+	} else {
+		cout << "No se pudo abrir el fichero" << endl;
+	}
+}
+
+void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
+		string EstacionDevolver) {
+	Usuario *usu = nullptr;
+	Patinete *P = nullptr;
+	bool encontrado = buscarUsuario(DNI, usu);
+	if(encontrado){
+		if(usu->ConsultarSaldo() > 10.0){
+			Estacion *E = nullptr;
+			lEstacion->moverPrimero();
+			bool encontradoEstacion = false;
+			while (!lEstacion->alFinal()) {
+				E = lEstacion->consultar();
+				if (E->ConsultarId() == EstacionAlquilar) {
+					P = E->alquilarPatinete();
+					P->SetDisponible(false);
+					encontradoEstacion = true;
+					break;
+				}
+				lEstacion->avanzar();
+			}
+			if (encontradoEstacion) {
+				usu->RetirarSaldo(10.0);
+				cout << "Patinete alquilado con éxito. Saldo restante: " << usu->ConsultarSaldo() << endl;
+				lEstacion->moverPrimero();
+				bool encontradoEstacionDevolver = false;
+				while (!lEstacion->alFinal()) {
+					E = lEstacion->consultar();
+					if (E->ConsultarId() == EstacionDevolver) {
+						P->SetDisponible(true);
+						E->agregarPatinete(P);
+						encontradoEstacionDevolver = true;
+						break;
+					}
+					lEstacion->avanzar();
+				}
+				if (!encontradoEstacionDevolver) {
+					P->Mostrar();
+					usu->Mostrar();
+					cout << "Patinete no devuelto. Estación no encontrada." << endl;
+					if(usu->ConsultarSaldo() < 110.0){
+						cout << "Usuario con saldo insuficiente, será eliminado." << endl;
+						lUsuarios->Eliminar(usu->GetDNI());
+				}else{
+					usu->RetirarSaldo(110.0);
+					cout << "Usuario multado con 110€ por no devolver el patinete." << endl;
+				}
+				}
+			} else {
+				cout << "Estación no encontrada." << endl;
+}
+		}else{
+			cout << "No tienes saldo suficiente para alquilar un patinete." << endl;
+		}
+	}else{
+		cout << "Usuario no encontrado." << endl;
+	}
+}
+
  Sistema::~Sistema() {
 	 delete lUsuarios;
 	 Patinete *P = nullptr;
@@ -235,6 +314,33 @@
 			 }
 		 }
 	 delete lEstacion;
- }
- 
- 
+}
+
+void Sistema::agregarPatineteEnEstacion(string idPatinete, string idEstacion) {
+	Patinete *P = nullptr;
+	Estacion *E = nullptr;
+	bool encontrado = false;
+
+	lPatinete->moverPrimero();
+	while (!lPatinete->alFinal() && !encontrado) {
+		P = lPatinete->consultar();
+		if (P->GetID() == idPatinete) {
+			encontrado = true;
+		}
+		lPatinete->avanzar();
+	}
+
+	if (encontrado) {
+		lEstacion->moverPrimero();
+		while (!lEstacion->alFinal()) {
+			E = lEstacion->consultar();
+			if (E->ConsultarId() == idEstacion) {
+				E->agregarPatinete(P);
+				break;
+			}
+			lEstacion->avanzar();
+		}
+	} else {
+		cout << "No se encontró el patinete con ID: " << idPatinete << endl;
+	}
+}

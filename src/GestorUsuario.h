@@ -20,6 +20,7 @@ public:
 	void Insertar(string NombreCompleto, string Telefono, int Edad, string NumeroCuenta,float saldo, string DNI, string Email);
 	bool Buscar(string DNI, Usuario *&usu);
 	int  NumElementos();
+	void Eliminar(string DNI);
 	void Mostrar();
 
 	virtual ~GestorUsuario();

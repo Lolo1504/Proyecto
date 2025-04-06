@@ -109,3 +109,19 @@ GestorUsuario::~GestorUsuario() {
 	delete lUsuario;
 }
 
+void GestorUsuario::Eliminar(string DNI) {
+	Usuario *u=nullptr;
+	lUsuario->moverPrimero();
+	while(!lUsuario->alFinal())
+		{
+		if(lUsuario->consultar()->GetDNI()==DNI)
+			{
+			u=lUsuario->consultar();
+			lUsuario->eliminar();
+			delete u;
+			contador--;
+			break;
+			}
+		lUsuario->avanzar();
+		}
+}

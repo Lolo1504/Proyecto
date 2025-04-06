@@ -26,10 +26,13 @@
 	 Estacion();
 	 Estacion(string Id, string direccion);
 	 Estacion(const Estacion &OtraEstacion);
+	 string ConsultarId();
+	 bool ConsultarDisponible();
 	 void agregarPatinete(Patinete *p);
 	 void MostrarDisponibles();
 	 void MostrarAveriados();
 	 void Mostrar();
+	 Patinete alquilarPatinete();
 	  ~Estacion();
  };
  
