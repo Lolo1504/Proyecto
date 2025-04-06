@@ -15,6 +15,7 @@
  this->lEstacion=new ListaDPI<Estacion*>;
  this->lPatinete=new ListaDPI<Patinete*>;
  cargarUsuarios();
+ cargarPatinetes();
  }
  
  Sistema::Sistema() {
@@ -22,6 +23,7 @@
 	 this->lUsuarios= new GestorUsuario;
 	 cargarUsuarios();
 	 this->lPatinete=new ListaDPI<Patinete*>;
+	 cargarPatinetes();
 	 this->lEstacion=new ListaDPI<Estacion*>;
  }
  
@@ -102,15 +104,15 @@
 	 {
 	 Patinete *P;
 	 P=new Patinete(id,marca,modelo,averiado,disponible);
-	 lPatinete->enUltimo();
+	 lPatinete->moverPrimero();
 	 lPatinete->insertar(P);
 	 }
  
  
- void Sistema::instertarEstacion(string id, string nombre)
+ void Sistema::insertarEstacion(string id, string ubicacion)
 	 {
 	 Estacion *E;
-	 E=new Estacion(id,nombre);
+	 E=new Estacion(id,ubicacion);
 	 lEstacion->enUltimo();
 	 lEstacion->insertar(E);
 	 }
@@ -124,23 +126,20 @@
 		 if(fEnt.is_open())
 			 {
 				 getline(fEnt,linea);
- 
 				 while(!fEnt.eof())
 				 {
- 
- 
 					 getline(fEnt,id,';');
 					 if(!fEnt.eof())
 					 {
 					 getline(fEnt,marca,';');
 					 getline(fEnt,modelo,';');
 					 getline(fEnt,averiado,';');
-					 getline(fEnt,disponible,';');
-					 Averiado=(averiado=="SI");
-					 Disponible=(disponible=="SI");
+					 getline(fEnt,disponible);
+					 Averiado=(averiado=="Si");
+					 cout<<disponible<<endl;
+					 Disponible=(disponible=="Si");
  
 					 insertarPatinete(id,marca,modelo,Averiado,Disponible);
- 
 					 }
 				 }
 				 fEnt.close();
@@ -152,7 +151,7 @@
  void Sistema::cargarEstacion()
 	 {
 	 ifstream fEnt;
-		 string linea,NombreCompleto,DNI,Correo,telefono,edad,numCuenta,saldo;
+		 string linea,id,ubicacion;
 
 		 fEnt.open("ficheros/estaciones.csv");
 		 if(fEnt.is_open())
@@ -161,28 +160,11 @@
  
 				 while(!fEnt.eof())
 				 {
- 
- 
-					 getline(fEnt,NombreCompleto,';');
+					 getline(fEnt,id,';');
 					 if(!fEnt.eof())
 					 {
-					 getline(fEnt,DNI,';');
-					 getline(fEnt,Correo,';');
-					 getline(fEnt,telefono,';');
-					 getline(fEnt,edad,';');
-					 getline(fEnt,numCuenta,';');
-					 getline(fEnt,saldo);
- 
-					 lUsuarios->Insertar(NombreCompleto,telefono,stoi(edad),numCuenta,stof(saldo),DNI,Correo);
-					 cout<< "----------------------------------"<<endl;
-					 cout<< "Usuario: "<<NombreCompleto<<endl;
-					 cout<< "DNI: "<<DNI<<endl;
-					 cout<< "Correo: "<<Correo<<endl;
-					 cout<< "Telefono: "<<telefono<<endl;
-					 cout<< "Edad: "<<edad<<endl;
-					 cout<< "Numero de cuenta: "<<numCuenta<<endl;
-					 cout<< "Saldo: "<<saldo<<endl;
-					 cout<< "----------------------------------"<<endl;
+					 getline(fEnt,ubicacion);
+					 insertarEstacion(id,ubicacion);
 					 }
 				 }
 				 fEnt.close();
@@ -193,12 +175,16 @@
  
  
  
- void Sistema::buscarUsuario(string DNI)
+ bool Sistema::buscarUsuario(string DNI, Usuario *&usu)
 	 {
+	 bool enc;
+	enc =lUsuarios->Buscar(DNI,usu);
+	 return enc;
 	 }
  
  void Sistema::mostrarUsuarios(){
 	 this->lUsuarios->Mostrar();
+	cout<<"Hay "<<  this->lUsuarios->NumElementos()<<" Usuarios"<<endl;
  }
  
  void Sistema::mostrarPatinetes(){

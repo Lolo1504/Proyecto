@@ -79,7 +79,22 @@ void GestorUsuario::Mostrar()
 	u->Mostrar();
 		lUsuario->avanzar();
 	}
+	}
+bool GestorUsuario::Buscar(string DNI, Usuario *&usu)
+	{
+	bool enc=false;
+	lUsuario->moverPrimero();
+	while(!lUsuario->alFinal()&& !enc)
+		{
+		if(lUsuario->consultar()->GetDNI()==DNI)
+			{
+			enc=true;
+			usu=lUsuario->consultar();
+			}
+		lUsuario->avanzar();
+		}
 
+	return enc;
 	}
 GestorUsuario::~GestorUsuario() {
 	Usuario *u=nullptr;

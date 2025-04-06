@@ -18,7 +18,7 @@ public:
 	GestorUsuario(const GestorUsuario &OtroGestor);
 
 	void Insertar(string NombreCompleto, string Telefono, int Edad, string NumeroCuenta,float saldo, string DNI, string Email);
-	bool Buscar(string DNI,const Usuario &usu);
+	bool Buscar(string DNI, Usuario *&usu);
 	int  NumElementos();
 	void Mostrar();
 

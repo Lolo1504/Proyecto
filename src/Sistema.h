@@ -26,14 +26,14 @@
 	 Sistema(string nombreSistema);
 	 Sistema(const Sistema &other);
  
-	 void buscarUsuario(string DNI);
+	 bool buscarUsuario(string DNI, Usuario *&usu);
  
 	 void mostrarUsuarios();
 	 void mostrarPatinetes();
 	 void mostrarEstaciones();
  
  
-	 void instertarEstacion(string id, string nombre);
+	 void insertarEstacion(string id, string nombre);
 	 void insertarPatinete(string id, string marca,string modelo,bool averiado,bool disponible);
  
 	 virtual ~Sistema();

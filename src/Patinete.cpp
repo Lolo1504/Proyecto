@@ -87,10 +87,12 @@ void Patinete::Mostrar()
 	string Averiado=" No esta averiado";
 	if(GetAveriado())
 		Averiado="Esta averiado";
-	if(!GetDisponible()){
+	if(!GetDisponible())
+	{
 		cout<<"ID: "<<GetID()<<endl <<"Marca: "<<GetMarca()<<endl<<
 				"Modelo: "<<GetModelo()<<endl<<"Averiado:"<<Averiado<<endl<<
 				"Disponible: "<<"No esta Disponible"<<endl<<
+
 				"Nombre del Usuario: "<<UsuarioActual->GetNombreCompleto()<<endl<<
 				"Dni: "<<UsuarioActual->GetDNI() <<endl;
 	}
