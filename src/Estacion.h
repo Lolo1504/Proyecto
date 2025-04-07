@@ -19,6 +19,7 @@
 	 string direccion;
 	 int NumDisponibles;
 	 int NumAveriados;
+	 int nAlquilados;
 	 Cola <Patinete*> *PatineteDisponible;
 	 Cola <Patinete*> *PatineteAveriado;
  
@@ -26,14 +27,17 @@
 	 Estacion();
 	 Estacion(string Id, string direccion);
 	 Estacion(const Estacion &OtraEstacion);
-	 int getNumDisponibles();
-	 int getNumAveriados();
 	 string ConsultarId();
+	 int NumeroDisponibles();
+	 int NumeroAveriados();
+	 int NumeroAlquilados();
 	 bool ConsultarDisponible();
 	 void agregarPatinete(Patinete *p);
 	 void MostrarDisponibles();
 	 void MostrarAveriados();
 	 void Mostrar();
+	 void RepararPatinetes();
+	 bool BuscarPatinete(string idPatinete);
 	 Patinete alquilarPatinete();
 	  ~Estacion();
  };

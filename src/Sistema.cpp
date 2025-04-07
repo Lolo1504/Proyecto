@@ -16,8 +16,6 @@
  this->lPatinete=new ListaDPI<Patinete*>;
  cargarUsuarios();
  cargarPatinetes();
- cargarEstacion();
- distribuirPatinetesEnEstaciones();
  }
  
  Sistema::Sistema() {
@@ -193,15 +191,55 @@
  
  void Sistema::mostrarPatinetes(){
 	 Patinete *P=nullptr;
+	 int nPatinetes=0;
 	 lPatinete->moverPrimero();
 	 while(!lPatinete->alFinal())
 		 {
 		 P=lPatinete->consultar();
 		 P->Mostrar();
 		 lPatinete->avanzar();
+		 nPatinetes++;
 		 }
+	 cout<<"Hay "<<nPatinetes<<" Patinetes"<<endl;
  }
  
+ void Sistema::mostrarEstacion(string idEstacion){
+	 Estacion *E=nullptr;
+	 lEstacion->moverPrimero();
+	 while(!lEstacion->alFinal())
+		 {
+		 E=lEstacion->consultar();
+		 if(E->ConsultarId()==idEstacion)
+			 {
+			 E->Mostrar();
+			 break;
+			 }
+		 lEstacion->avanzar();
+		 }
+ }
+
+ void Sistema::maxAlquiladosEstacion(){
+	 Estacion *Max=nullptr;
+	 Estacion *E=nullptr;
+	 lEstacion->moverPrimero();
+	 int max=0;
+	 string idEstacion;
+	 while(!lEstacion->alFinal())
+		 {
+		 E=lEstacion->consultar();
+		 if(E->NumeroAlquilados()>max)
+			 {
+			 max=E->NumeroAlquilados();
+			 Max=E;
+			 }
+		 lEstacion->avanzar();
+		 }
+	 if(Max!=nullptr)
+		 {
+		 Max->Mostrar();
+		 }
+ }
+
  void Sistema::mostrarEstaciones(){
 	 Estacion *E=nullptr;
 	 lEstacion->moverPrimero();
@@ -231,9 +269,9 @@ void Sistema::distribuirPatinetesEnEstaciones() {
 		cout << "No se pudo abrir el fichero" << endl;
 	}
 }
-/*
+
 void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
-		string EstacionDevolver) {
+		string EstacionDevolver) {/*
 	Usuario *usu = nullptr;
 	Patinete *P = nullptr;
 	bool encontrado = buscarUsuario(DNI, usu);
@@ -245,6 +283,7 @@ void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
 			while (!lEstacion->alFinal()) {
 				E = lEstacion->consultar();
 				if (E->ConsultarId() == EstacionAlquilar) {
+					//
 					P = E->alquilarPatinete();
 					P->SetDisponible(false);
 					encontradoEstacion = true;
@@ -287,9 +326,50 @@ void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
 		}
 	}else{
 		cout << "Usuario no encontrado." << endl;
+	}*/
+}
+
+void Sistema::alquilarDevolverPatinetes() {
+}
+
+void Sistema::repararPatinetesEstacion(string idEstacion) {
+	Estacion *E = nullptr;
+	lEstacion->moverPrimero();
+	while (!lEstacion->alFinal()) {
+		E = lEstacion->consultar();
+		if (E->ConsultarId() == idEstacion) {
+			E->RepararPatinetes();
+			break;
+		}
+		lEstacion->avanzar();
 	}
 }
-*/
+
+void Sistema::buscarPatinetesExtraviados() {
+	Patinete *P1 = nullptr;
+	Estacion *E = nullptr;
+	bool encontrado = false;
+	lPatinete->moverPrimero();
+	while (!lPatinete->alFinal()) {
+		P1 = lPatinete->consultar();
+		lEstacion->moverPrimero();
+		while (!lEstacion->alFinal() && !encontrado) {
+			E = lEstacion->consultar();
+			if (!E->BuscarPatinete(P1->GetID())) {
+				lEstacion->avanzar();
+			}
+			else {
+				encontrado = true;
+			}
+		}
+		if(!encontrado) {
+		lPatinete->eliminar();
+		}else {
+			lPatinete->avanzar();
+		}
+	}
+}
+
  Sistema::~Sistema() {
 	 delete lUsuarios;
 	 Patinete *P = nullptr;

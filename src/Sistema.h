@@ -33,10 +33,14 @@
 	 void mostrarUsuarios();
 	 void mostrarPatinetes();
 	 void mostrarEstaciones();
-
+	 void mostrarEstacion(string idEstacion);
+	 void maxAlquiladosEstacion();
      void agregarPatineteEnEstacion(string idPatinete, string idEstacion);
 	 void insertarEstacion(string id, string nombre);
 	 void insertarPatinete(string id, string marca,string modelo,bool averiado,bool disponible);
+	 void alquilarDevolverPatinetes();
+	 void repararPatinetesEstacion(string idEstacion);
+	 void buscarPatinetesExtraviados();
  
 	 virtual ~Sistema();
  };
