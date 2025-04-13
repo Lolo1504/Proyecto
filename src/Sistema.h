@@ -29,7 +29,8 @@
 	 Sistema(const Sistema &other);
  
 	 bool buscarUsuario(string DNI, Usuario *&usu);
- 
+	 bool buscarPatinete(string IdPatinete, Patinete *&p);
+
 	 void mostrarUsuarios();
 	 void mostrarPatinetes();
 	 void mostrarEstaciones();

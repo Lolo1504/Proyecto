@@ -15,6 +15,7 @@ void PruebasSistema()
 	s->buscarUsuario("36519149R",u);
 	u->Mostrar();
 	s->mostrarPatinetes();
+	s->mostrarEstaciones();
 	cout << "Prueba constructor por copia"<<endl;
 	//Sistema *s1= new Sistema(*s);
 	//s1->mostrarUsuarios();

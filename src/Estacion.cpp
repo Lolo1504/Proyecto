@@ -119,11 +119,16 @@
 	 {
 	 if(p->GetAveriado())
 		 {
+		 p->SetDisponible(false);
 		 PatineteAveriado->encolar(p);
+
 		 this->NumAveriados++;
 		 }
 	 else
+	 {
+		 p->SetDisponible(true);
 		 PatineteDisponible->encolar(p);
+	 }
 	 this->NumDisponibles++;
 	 }
  void Estacion::MostrarAveriados()
@@ -190,6 +195,7 @@ Patinete Estacion::alquilarPatinete() {
 	if (ConsultarDisponible()) {
 		Patinete *p = PatineteDisponible->getPrimero();
 		PatineteDisponible->desencolar();
+		p->SetDisponible(false);
 		this->NumDisponibles--;
 		return *p;
 	} else {

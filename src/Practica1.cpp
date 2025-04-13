@@ -151,6 +151,7 @@ int menu(string nombreSistema) {
 int main() {
 	// TODO Crear un objeto dinámico de la clase Sistema
 	Sistema *s = new Sistema("Sistema de Patinetes");
+	//PruebasSistema();
 	//los datos se cargan automáticamente.
 	// TODO no olvidar hacer new
 	bool salir = false;

@@ -16,6 +16,8 @@
  this->lPatinete=new ListaDPI<Patinete*>;
  cargarUsuarios();
  cargarPatinetes();
+ cargarEstacion();
+ distribuirPatinetesEnEstaciones();
  }
  
  Sistema::Sistema() {
@@ -138,7 +140,6 @@
 					 getline(fEnt,averiado,';');
 					 getline(fEnt,disponible);
 					 Averiado=(averiado=="Si");
-					 cout<<disponible<<endl;
 					 Disponible=(disponible=="Si");
  
 					 insertarPatinete(id,marca,modelo,Averiado,Disponible);
@@ -183,7 +184,19 @@
 	enc =lUsuarios->Buscar(DNI,usu);
 	 return enc;
 	 }
- 
+ bool Sistema::buscarPatinete(string IdPatinete,Patinete *&p)
+ 	 {
+	 bool enc =false;
+	 lPatinete->moverPrimero();
+	 while(!lPatinete->alFinal()&& !enc)
+	 	 {
+		 if(lPatinete->consultar()->GetID()==IdPatinete)
+		 	 {
+			 p=lPatinete->consultar();
+		 	 }
+	 	 }
+	 return enc;
+ 	 }
  void Sistema::mostrarUsuarios(){
 	 this->lUsuarios->Mostrar();
 	cout<<"Hay "<<  this->lUsuarios->NumElementos()<<" Usuarios"<<endl;
@@ -241,12 +254,10 @@
  }
 
  void Sistema::mostrarEstaciones(){
-	 Estacion *E=nullptr;
 	 lEstacion->moverPrimero();
 	 while(!lEstacion->alFinal())
 		 {
-		 E=lEstacion->consultar();
-		 E->Mostrar();
+		 lEstacion->consultar()->Mostrar();
 		 lEstacion->avanzar();
 		 }
  }
@@ -258,9 +269,9 @@ void Sistema::distribuirPatinetesEnEstaciones() {
 	if (fEnt.is_open()) {
 		getline(fEnt, linea);
 		while (!fEnt.eof()) {
-			getline(fEnt, idEstacion, ';');
+			getline(fEnt, idPatinete, ';');
 			if (!fEnt.eof()) {
-				getline(fEnt, idPatinete);
+				getline(fEnt, idEstacion);
 				agregarPatineteEnEstacion(idPatinete, idEstacion);
 			}
 		}
