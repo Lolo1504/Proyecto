@@ -222,7 +222,7 @@
 	 while(!lEstacion->alFinal())
 		 {
 		 E=lEstacion->consultar();
-		 if(E->ConsultarId()==idEstacion)
+		 if(E->getId()==idEstacion)
 			 {
 			 E->Mostrar();
 			 break;
@@ -240,9 +240,9 @@
 	 while(!lEstacion->alFinal())
 		 {
 		 E=lEstacion->consultar();
-		 if(E->NumeroAlquilados()>max)
+		 if(E->getNumeroAlquilados()>max)
 			 {
-			 max=E->NumeroAlquilados();
+			 max=E->getNumeroAlquilados();
 			 Max=E;
 			 }
 		 lEstacion->avanzar();
@@ -348,7 +348,7 @@ void Sistema::repararPatinetesEstacion(string idEstacion) {
 	lEstacion->moverPrimero();
 	while (!lEstacion->alFinal()) {
 		E = lEstacion->consultar();
-		if (E->ConsultarId() == idEstacion) {
+		if (E->getId() == idEstacion) {
 			E->RepararPatinetes();
 			break;
 		}
@@ -427,7 +427,7 @@ void Sistema::agregarPatineteEnEstacion(string idPatinete, string idEstacion) {
 		lEstacion->moverPrimero();
 		while (!lEstacion->alFinal()) {
 			E = lEstacion->consultar();
-			if (E->ConsultarId() == idEstacion) {
+			if (E->getId() == idEstacion) {
 				E->agregarPatinete(P);
 				break;
 			}

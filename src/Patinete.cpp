@@ -91,10 +91,7 @@
 	 {
 		 cout<<"ID: "<<GetID()<<endl <<"Marca: "<<GetMarca()<<endl<<
 				 "Modelo: "<<GetModelo()<<endl<<"Averiado:"<<Averiado<<endl<<
-				 "Disponible: "<<"No esta Disponible"<<endl<<
- 
-				 "Nombre del Usuario: "<<UsuarioActual->GetNombreCompleto()<<endl<<
-				 "Dni: "<<UsuarioActual->GetDNI() <<endl;
+				 "Disponible: "<<"No esta Disponible"<<endl;
 	 }
 	 else
 		 {

@@ -27,10 +27,13 @@
 	 Estacion();
 	 Estacion(string Id, string direccion);
 	 Estacion(const Estacion &OtraEstacion);
-	 string ConsultarId();
-	 int NumeroDisponibles();
-	 int NumeroAveriados();
-	 int NumeroAlquilados();
+	 void setId(string Id);
+	 void setDireccion(string Direccion);
+	 string getId();
+	 string getDireccion();
+	 int getNumeroDisponibles();
+	 int getNumeroAveriados();
+	 int getNumeroAlquilados();
 	 bool ConsultarDisponible();
 	 void agregarPatinete(Patinete *p);
 	 void MostrarDisponibles();

@@ -70,15 +70,34 @@
 		 delete Aux;
  
 	 }
-
- int Estacion::NumeroAlquilados()
+ void Estacion::setId(string Id)
+ 	 {
+	 identificador=Id;
+ 	 }
+ void Estacion::setDireccion(string Direccion)
+ 	 	 {
+ 		 direccion=Direccion;
+ 	 	 }
+ int Estacion::getNumeroAlquilados()
 	 { return this->nAlquilados; }
 
- int Estacion::NumeroDisponibles()
+ int Estacion::getNumeroDisponibles()
 	 { return this->NumDisponibles; }
 
- int Estacion::NumeroAveriados()
+ int Estacion::getNumeroAveriados()
 	 { return this->NumAveriados; }
+ string Estacion::getId()
+	 {
+	 return this->identificador;
+	 }
+ string Estacion::getDireccion()
+ 	 {
+	 return this->direccion;
+ 	 }
+
+bool Estacion::ConsultarDisponible() {
+	 return this->NumDisponibles>0;
+ }
 
  bool Estacion::BuscarPatinete(string idPatinete) {
 	 bool encontrado = false;
@@ -119,17 +138,18 @@
 	 {
 	 if(p->GetAveriado())
 		 {
-		 p->SetDisponible(false);
+
 		 PatineteAveriado->encolar(p);
 
 		 this->NumAveriados++;
 		 }
 	 else
 	 {
-		 p->SetDisponible(true);
+
 		 PatineteDisponible->encolar(p);
+		 this->NumDisponibles++;
 	 }
-	 this->NumDisponibles++;
+
 	 }
  void Estacion::MostrarAveriados()
 	 {
@@ -147,8 +167,8 @@
 		 PatineteAveriado->encolar(Aux->getPrimero());
 		 Aux->desencolar();
 		 }
-	 //Hacer: Usar el metodo Get numPatinetesAveriados para mostrar el numero de patinetes
-	 //cout << "Hay "<< <<endl;
+
+	 cout << "Hay "<< getNumeroAveriados()<< " patinetes averiados" <<endl;
 	 delete Aux;
 	 }
  
@@ -161,14 +181,6 @@
 
 	 }
  
- string Estacion::ConsultarId()
-	 {
-	 return this->identificador;
-	 }
-
-bool Estacion::ConsultarDisponible() {
-	 return this->NumDisponibles>0;
- }
 
 
 void Estacion::MostrarDisponibles() {
@@ -186,8 +198,8 @@ void Estacion::MostrarDisponibles() {
 		 PatineteDisponible->encolar(Aux->getPrimero());
 		 Aux->desencolar();
 		 }
-	 //Hacer: Usar el metodo Get numPatinetesAveriados para mostrar el numero de patinetes
-	 //cout << "Hay "<< <<endl;ss
+
+	 cout << "Hay "<<getNumeroDisponibles()<<" patinetes disponibles" <<endl;
 	 delete Aux;
 }
 

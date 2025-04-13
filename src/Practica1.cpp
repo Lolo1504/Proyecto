@@ -15,6 +15,7 @@ using namespace std;
 #include "PruebaPatinete.h"
 #include "PruebasSistemas.h"
 #include "PruebasGestorUsuario.h"
+#include "PruebaEstacion.h"
 #include "Usuario.h"
 #include <fstream>
 const int TAM=242;
@@ -148,7 +149,7 @@ int menu(string nombreSistema) {
 	return opcion;
 }
 
-int main() {
+int main() {/*
 	// TODO Crear un objeto dinámico de la clase Sistema
 	Sistema *s = new Sistema("Sistema de Patinetes");
 	//PruebasSistema();
@@ -200,6 +201,7 @@ int main() {
 	}
 
 	// TODO no olvidar el delete al puntero
-	delete s;
+	delete s;*/
+	pruebaEstacion();
 	return 0;
 }

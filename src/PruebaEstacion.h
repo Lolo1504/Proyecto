@@ -8,7 +8,7 @@
 #ifndef PRUEBAESTACION_H_
 #define PRUEBAESTACION_H_
 
-
+#include "Estacion.h"
 void pruebaEstacion();
 
 
