@@ -373,6 +373,7 @@ void Sistema::buscarPatinetesExtraviados() {
 	lPatinete->moverPrimero();
 	while (!lPatinete->alFinal()) {
 		P1 = lPatinete->consultar();
+		encontrado = false;
 		lEstacion->moverPrimero();
 		while (!lEstacion->alFinal() && !encontrado) {
 			E = lEstacion->consultar();
@@ -384,6 +385,7 @@ void Sistema::buscarPatinetesExtraviados() {
 			}
 		}
 		if(!encontrado) {
+			cout<<"El patinete perdido es:"<<P1->Mostrar()<<endl;
 		lPatinete->eliminar();
 		}else {
 			lPatinete->avanzar();
