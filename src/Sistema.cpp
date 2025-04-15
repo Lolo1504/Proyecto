@@ -424,28 +424,16 @@ void Sistema::buscarPatinetesExtraviados() {
 void Sistema::agregarPatineteEnEstacion(string idPatinete, string idEstacion) {
 	Patinete *P = nullptr;
 	Estacion *E = nullptr;
-	bool encontrado = false;
-
-	lPatinete->moverPrimero();
-	while (!lPatinete->alFinal() && !encontrado) {
-		P = lPatinete->consultar();
-		if (P->GetID() == idPatinete) {
-			encontrado = true;
-		}
-		lPatinete->avanzar();
-	}
-
-	if (encontrado) {
-		lEstacion->moverPrimero();
-		while (!lEstacion->alFinal()) {
-			E = lEstacion->consultar();
-			if (E->getId() == idEstacion) {
-				E->agregarPatinete(P);
-				break;
+	if(buscarPatinete(idPatinete,P))
+	{
+		if(buscarEstacion(idEstacion,E))
+			{
+			E->agregarPatinete(P);
 			}
-			lEstacion->avanzar();
-		}
-	} else {
-		cout << "No se encontró el patinete con ID: " << idPatinete << endl;
+		else
+			cout<<"Estacion no encontrada"<<endl;
+
 	}
+	else
+		cout<<"Patinete no encontrado"<<endl;
 }
