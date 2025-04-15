@@ -203,38 +203,40 @@ void Estacion::MostrarDisponibles() {
 	 delete Aux;
 }
 
-Patinete Estacion::alquilarPatinete() {
+void Estacion::alquilarPatinete( Usuario *&usu,Patinete *&P) {
+	Patinete *p=nullptr;
 	if (ConsultarDisponible()) {
-		Patinete *p = PatineteDisponible->getPrimero();
+		p = PatineteDisponible->getPrimero();
 		PatineteDisponible->desencolar();
-		p->SetDisponible(false);
+		p->Alquilar(usu);
 		this->NumDisponibles--;
-		return *p;
+
 	} else {
 		cout << "No hay patinetes disponibles en la estacion." << endl;
-		return Patinete(); // Retorna un patinete vacío o nulo
 	}
+
 }
+void Estacion::Devolver(Patinete *&P)
+	{
+	P->Desalquilar();
+	agregarPatinete(P);
 
+	}
 
-void Estacion::RepararPatinetes() {
-	Cola<Patinete*> *Aux=new Cola<Patinete*>;
+int Estacion::RepararPatinetes() {
+
 	Patinete *p;
+	int Arreglados=NumAveriados;
 	while(!PatineteAveriado->estaVacia()){
 		p=PatineteAveriado->getPrimero();
-		Aux->encolar(p);
-		PatineteAveriado->desencolar();
 		p->SetAveriado(false);
 		p->SetDisponible(true);
-		this->NumDisponibles++;
-		this->NumAveriados--;
+		PatineteAveriado->desencolar();
+		agregarPatinete(p);
+		NumAveriados--;
 	}
-	while(!Aux->estaVacia())
-		 {
-		 PatineteDisponible->encolar(Aux->getPrimero());
-		 Aux->desencolar();
-		 }
-	delete Aux;
+
+return Arreglados;
 }
 
  Estacion::~Estacion() {

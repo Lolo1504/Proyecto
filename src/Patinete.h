@@ -39,6 +39,7 @@
 	 void SetAveriado(bool Averiado);
 	 void SetDisponible(bool Disponible);
 	 void Alquilar(Usuario* user );
+	 void Desalquilar();
 	 void Mostrar();
 	 bool operator ==(const Patinete &OtroPatinete) ;
 	 virtual ~Patinete();

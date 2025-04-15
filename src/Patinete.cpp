@@ -77,11 +77,16 @@
 	 {
 	 this->Disponible=Disponible;
 	 }
- void Patinete::Alquilar(Usuario* user )
+ void Patinete::Alquilar(Usuario *user )
 	 {
 		 this->UsuarioActual=user;
 		 SetDisponible(false);
 	 }
+ void Patinete::Desalquilar()
+ 	 {
+	 this->UsuarioActual=nullptr;
+	 SetDisponible(true);
+ 	 }
  void Patinete::Mostrar()
 	 {
 	 string Averiado=" No esta averiado";
@@ -92,6 +97,10 @@
 		 cout<<"ID: "<<GetID()<<endl <<"Marca: "<<GetMarca()<<endl<<
 				 "Modelo: "<<GetModelo()<<endl<<"Averiado:"<<Averiado<<endl<<
 				 "Disponible: "<<"No esta Disponible"<<endl;
+		 if(UsuarioActual!=nullptr)
+		 	 {
+			 	 cout<<"DNI: "<<UsuarioActual->GetDNI() <<endl<<"Nombre completo: "<< UsuarioActual->GetNombreCompleto()<<endl;
+		 	 }
 	 }
 	 else
 		 {

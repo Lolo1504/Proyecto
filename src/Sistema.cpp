@@ -193,7 +193,24 @@
 		 if(lPatinete->consultar()->GetID()==IdPatinete)
 		 	 {
 			 p=lPatinete->consultar();
+			 enc=true;
 		 	 }
+		 lPatinete->avanzar();
+	 	 }
+	 return enc;
+ 	 }
+ bool Sistema::buscarEstacion(string IdEstacion,Estacion*&E)
+ 	 {
+	 bool enc=false;
+	 lEstacion->moverPrimero();
+	 while(!lEstacion->alFinal()&& !enc)
+	 	 {
+		 if(lEstacion->consultar()->getId()==IdEstacion)
+		 	 {
+			 E=lEstacion->consultar();
+			 enc=true;
+		 	 }
+		 lEstacion->avanzar();
 	 	 }
 	 return enc;
  	 }
@@ -282,62 +299,58 @@ void Sistema::distribuirPatinetesEnEstaciones() {
 }
 
 void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
-		string EstacionDevolver) {/*
+		string EstacionDevolver) {
 	Usuario *usu = nullptr;
 	Patinete *P = nullptr;
-	bool encontrado = buscarUsuario(DNI, usu);
-	if(encontrado){
-		if(usu->ConsultarSaldo() > 10.0){
-			Estacion *E = nullptr;
-			lEstacion->moverPrimero();
-			bool encontradoEstacion = false;
-			while (!lEstacion->alFinal()) {
-				E = lEstacion->consultar();
-				if (E->ConsultarId() == EstacionAlquilar) {
-					//
-					P = E->alquilarPatinete();
-					P->SetDisponible(false);
-					encontradoEstacion = true;
-					break;
-				}
-				lEstacion->avanzar();
+	Estacion *EAlquilar = nullptr;
+	Estacion *EDevolver=nullptr;
+	if(buscarUsuario(DNI, usu)){
+		if(usu->ConsultarSaldo() >= 10.0){
+					if(buscarEstacion(EstacionAlquilar,EAlquilar))
+						{EAlquilar->alquilarPatinete(usu,P);
+						if(P!=nullptr)
+						{
+							usu->RetirarSaldo(10.0);
+							cout << "Patinete alquilado con éxito. Saldo restante: " << usu->ConsultarSaldo() << endl;
+								if (!buscarEstacion(EstacionDevolver,EDevolver)) {
+												P->Mostrar();
+												cout << "Patinete no devuelto, estación de devolucion no encontrada." << endl;
+												if(usu->ConsultarSaldo() < 110.0)
+													{
+														cout << "Usuario con saldo insuficiente, será eliminado." << endl;
+														lUsuarios->Eliminar(usu->GetDNI());
+													}
+												else
+													{
+														usu->RetirarSaldo(110.0);
+														cout << "Usuario multado con 110€ por no devolver el patinete." << endl;
+													}
+												}
+											else
+												{
+												EDevolver->Devolver(P);
+												cout << "Patinete devuelto"<<endl;
+												}
+							}
+						else
+							cout<<"No hay patinetes disponibles en la estacion" <<endl;
+
+
 			}
-			if (encontradoEstacion) {
-				usu->RetirarSaldo(10.0);
-				cout << "Patinete alquilado con éxito. Saldo restante: " << usu->ConsultarSaldo() << endl;
-				lEstacion->moverPrimero();
-				bool encontradoEstacionDevolver = false;
-				while (!lEstacion->alFinal()) {
-					E = lEstacion->consultar();
-					if (E->ConsultarId() == EstacionDevolver) {
-						P->SetDisponible(true);
-						E->agregarPatinete(P);
-						encontradoEstacionDevolver = true;
-						break;
-					}
-					lEstacion->avanzar();
-				}
-				if (!encontradoEstacionDevolver) {
-					P->Mostrar();
-					usu->Mostrar();
-					cout << "Patinete no devuelto. Estación no encontrada." << endl;
-					if(usu->ConsultarSaldo() < 110.0){
-						cout << "Usuario con saldo insuficiente, será eliminado." << endl;
-						lUsuarios->Eliminar(usu->GetDNI());
-				}else{
-					usu->RetirarSaldo(110.0);
-					cout << "Usuario multado con 110€ por no devolver el patinete." << endl;
-				}
-				}
-			} else {
-				cout << "Estación no encontrada." << endl;
-}
-		}else{
+			else
+				cout << "Estación  de alquiler no encontrada." << endl;
+
+		}
+		else
+		{
 			cout << "No tienes saldo suficiente para alquilar un patinete." << endl;
 		}
-	}else{
+	}
+
+	else
+		{
 		cout << "Usuario no encontrado." << endl;
-	}*/
+		}
 }
 
 void Sistema::alquilarDevolverPatinetes() {
@@ -345,15 +358,12 @@ void Sistema::alquilarDevolverPatinetes() {
 
 void Sistema::repararPatinetesEstacion(string idEstacion) {
 	Estacion *E = nullptr;
-	lEstacion->moverPrimero();
-	while (!lEstacion->alFinal()) {
-		E = lEstacion->consultar();
-		if (E->getId() == idEstacion) {
-			E->RepararPatinetes();
-			break;
+	if(buscarEstacion(idEstacion,E))
+		{
+		cout<<"Han sido reparados: " <<E->RepararPatinetes()<<" patientes"<<endl;
+
 		}
-		lEstacion->avanzar();
-	}
+
 }
 
 void Sistema::buscarPatinetesExtraviados() {

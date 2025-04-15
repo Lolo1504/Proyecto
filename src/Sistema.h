@@ -30,6 +30,7 @@
  
 	 bool buscarUsuario(string DNI, Usuario *&usu);
 	 bool buscarPatinete(string IdPatinete, Patinete *&p);
+	 bool buscarEstacion(string IdEstacion,Estacion *&E);
 
 	 void mostrarUsuarios();
 	 void mostrarPatinetes();

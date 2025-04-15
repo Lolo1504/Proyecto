@@ -68,7 +68,7 @@
 	 }
  string Usuario::GetDNI()
 	 {
-	 return DNI;
+     return DNI;
 	 }
  string Usuario::GetEmail()
 	 {

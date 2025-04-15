@@ -39,9 +39,10 @@
 	 void MostrarDisponibles();
 	 void MostrarAveriados();
 	 void Mostrar();
-	 void RepararPatinetes();
+	 int RepararPatinetes();
 	 bool BuscarPatinete(string idPatinete);
-	 Patinete alquilarPatinete();
+	 void alquilarPatinete( Usuario *&usu,Patinete *&P);
+	 void Devolver(Patinete *&P);
 	  ~Estacion();
  };
  

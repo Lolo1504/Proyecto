@@ -203,5 +203,6 @@ int main() {/*
 	// TODO no olvidar el delete al puntero
 	delete s;*/
 	pruebaEstacion();
+	PruebaPatinete();
 	return 0;
 }
