@@ -149,16 +149,17 @@ int menu(string nombreSistema) {
 	return opcion;
 }
 
-int main() {/*
+int main() {
 	// TODO Crear un objeto dinámico de la clase Sistema
 	Sistema *s = new Sistema("Sistema de Patinetes");
-	//PruebasSistema();
+
 	//los datos se cargan automáticamente.
 	// TODO no olvidar hacer new
 	bool salir = false;
 	int opcion;
 	string nombreSistema;
-	string idPatinete, idEstacion, marca, modelo;
+	string idPatinete, idEstacion, marca, modelo,DNI;
+	Usuario *usu;
 
 	while (!salir) {
 
@@ -168,6 +169,11 @@ int main() {/*
 			s->mostrarUsuarios();
 			break;
 		case 2:
+			cout<< "Introduce el DNI del usuario: ";
+			cin>>DNI;
+			cin.ignore();
+			s->buscarUsuario(DNI,usu);
+			usu->Mostrar();
 			break;
 		case 3:
 			s->mostrarPatinetes();
@@ -181,10 +187,12 @@ int main() {/*
 			s->mostrarEstacion(idEstacion);
 			break;
 		case 6:
-
+			cout<<"Introduce el id de la estacion que desea que repare sus patinetes: ";
+			cin>>idEstacion;
+			s->repararPatinetesEstacion(idEstacion);
 			break;
 		case 7:
-
+			s->alquilarDevolverPatinetes();
 			break;
 		case 8:
 			s->maxAlquiladosEstacion();
@@ -200,9 +208,10 @@ int main() {/*
 		}
 	}
 
-	// TODO no olvidar el delete al puntero
-	delete s;*/
-	pruebaEstacion();
-	PruebaPatinete();
+
+	delete s;
+	//pruebaEstacion();
+	//PruebaPatinete();
+	//PruebasSistema();
 	return 0;
 }

@@ -16,7 +16,9 @@ void PruebasSistema()
 	u->Mostrar();
 	s->mostrarPatinetes();
 	s->mostrarEstaciones();
-	cout << "Prueba constructor por copia"<<endl;
+	s->alquilarDevolverPatinetes();
+
+	//cout << "Prueba constructor por copia"<<endl;
 	//Sistema *s1= new Sistema(*s);
 	//s1->mostrarUsuarios();
 	delete s;

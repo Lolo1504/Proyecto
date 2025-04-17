@@ -267,6 +267,7 @@
 	 if(Max!=nullptr)
 		 {
 		 Max->Mostrar();
+		 cout<< "Ha alquilado: "<<max;
 		 }
  }
 
@@ -312,12 +313,14 @@ void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
 						{
 							usu->RetirarSaldo(10.0);
 							cout << "Patinete alquilado con éxito. Saldo restante: " << usu->ConsultarSaldo() << endl;
+							EAlquilar->setNumeroAlquilados();
 								if (!buscarEstacion(EstacionDevolver,EDevolver)) {
 												P->Mostrar();
 												cout << "Patinete no devuelto, estación de devolucion no encontrada." << endl;
 												if(usu->ConsultarSaldo() < 110.0)
 													{
 														cout << "Usuario con saldo insuficiente, será eliminado." << endl;
+														P->Desalquilar();
 														lUsuarios->Eliminar(usu->GetDNI());
 													}
 												else
@@ -354,6 +357,24 @@ void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
 }
 
 void Sistema::alquilarDevolverPatinetes() {
+	ifstream fEnt;
+		string linea, idEstacionS, DNI,idEstacionD;
+		fEnt.open("ficheros/alquilerPatinetes.csv");
+		if (fEnt.is_open()) {
+			getline(fEnt, linea);
+			while (!fEnt.eof()) {
+				getline(fEnt, idEstacionS, ';');
+				if (!fEnt.eof()) {
+					getline(fEnt,DNI,';');
+					getline(fEnt, idEstacionD);
+					alquilarDevolverUnPatinete(idEstacionS,DNI, idEstacionD);
+				}
+			}
+			fEnt.close();
+		} else {
+			cout << "No se pudo abrir el fichero" << endl;
+		}
+
 }
 
 void Sistema::repararPatinetesEstacion(string idEstacion) {
@@ -385,7 +406,9 @@ void Sistema::buscarPatinetesExtraviados() {
 			}
 		}
 		if(!encontrado) {
-			cout<<"El patinete perdido es:"<<P1->Mostrar()<<endl;
+		cout<<"El patinete perdido es: "<<endl;
+		P1->Mostrar();
+
 		lPatinete->eliminar();
 		}else {
 			lPatinete->avanzar();

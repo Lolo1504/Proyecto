@@ -78,6 +78,8 @@
  	 	 {
  		 direccion=Direccion;
  	 	 }
+ void Estacion::setNumeroAlquilados()
+ {this->nAlquilados++;}
  int Estacion::getNumeroAlquilados()
 	 { return this->nAlquilados; }
 
@@ -204,17 +206,14 @@ void Estacion::MostrarDisponibles() {
 }
 
 void Estacion::alquilarPatinete( Usuario *&usu,Patinete *&P) {
-	Patinete *p=nullptr;
+
 	if (ConsultarDisponible()) {
-		p = PatineteDisponible->getPrimero();
+		P = PatineteDisponible->getPrimero();
 		PatineteDisponible->desencolar();
-		p->Alquilar(usu);
+		P->Alquilar(usu);
 		this->NumDisponibles--;
 
-	} else {
-		cout << "No hay patinetes disponibles en la estacion." << endl;
 	}
-
 }
 void Estacion::Devolver(Patinete *&P)
 	{

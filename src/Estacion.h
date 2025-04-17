@@ -29,6 +29,7 @@
 	 Estacion(const Estacion &OtraEstacion);
 	 void setId(string Id);
 	 void setDireccion(string Direccion);
+	 void setNumeroAlquilados();
 	 string getId();
 	 string getDireccion();
 	 int getNumeroDisponibles();

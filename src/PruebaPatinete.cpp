@@ -30,7 +30,9 @@ void PruebaPatinete()
 		cout<< user1->GetNombreCompleto()<<endl;
 		P1->Mostrar();
 		Patinete *P2;
-		P2=new Patinete();
+		P2=new Patinete(*P1);
+		P2->Desalquilar();
+		P2->Mostrar();
 		delete P1;
 		delete P2;
 		delete user1;
