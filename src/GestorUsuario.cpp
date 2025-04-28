@@ -6,7 +6,7 @@
  */
 
 #include "GestorUsuario.h"
-
+#if defined(LISTA)
 GestorUsuario::GestorUsuario() {
 	lUsuario=new ListaDPI<Usuario*>;
 	contador=0;
@@ -125,3 +125,50 @@ void GestorUsuario::Eliminar(string DNI) {
 		lUsuario->avanzar();
 		}
 }
+#else
+GestorUsuario::GestorUsuario()
+	{
+	aUsuarios=new BSTree <KeyValue<string,Usuario*>>;
+	contador=0;
+	}
+void GestorUsuario::copiarArbol(BSTree<KeyValue<string,Usuario*>> *otro)
+	{
+	KeyValue<string,Usuario*> par;
+	Usuario *u=nullptr;
+	if(!otro->estaVacio())
+		{
+		par=otro->getDato();
+		u=par.getValue();
+		Usuario *Uc=new Usuario(*u);
+		KeyValue<string,Usuario*> parCopia(par.getKey(),Uc);
+		aUsuarios->insertar(parCopia);
+		if(otro->getIzq()!=nullptr)
+			{
+			copiarArbol(otro->getIzq());
+			}
+		if(otro->getDer()!=nullptr)
+			{
+			copiarArbol(otro->getDer());
+			}
+		}
+	}
+GestorUsuario::GestorUsuario(const GestorUsuario &OtroGestor)
+	{
+	aUsuarios=new BSTree<KeyValue<string,Usuario*>>;
+	contador=OtroGestor.contador;
+	copiarArbol(OtroGestor.aUsuarios);
+	}
+void GestorUsuario::Insertar(string NombreCompleto, string Telefono, int Edad, string NumeroCuenta,float saldo, string DNI, string Email)
+	{
+	Usuario *u=new Usuario(NombreCompleto,Telefono,Edad,NumeroCuenta,saldo,DNI,Email);
+	aUsuarios->insertar(KeyValue<string,Usuario*> (DNI,u));
+
+	}
+bool GestorUsuario::Buscar(string DNI,Usuario *&u)
+	{
+	bool enc=false;
+return enc;
+	}
+GestorUsuario::~GestorUsuario()
+{}
+#endif
