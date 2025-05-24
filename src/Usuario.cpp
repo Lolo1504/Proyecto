@@ -112,7 +112,7 @@
  //Mostrar
  void Usuario::Mostrar()
 	 {
-	 cout <<"Nombre de la criatura: "<< GetNombreCompleto() <<endl<< "Telefono: " << GetTelefono() <<endl << "Edad del bicho: "<<GetEdad()  <<endl << "DNI: "<<GetDNI()<<endl<< "Email: " << GetEmail()<<endl;
+	 cout <<"Nombre: "<< GetNombreCompleto() <<endl<< "Telefono: " << GetTelefono() <<endl << "Edad: "<<GetEdad()  <<endl << "DNI: "<<GetDNI()<<endl<< "Email: " << GetEmail()<<endl;
 	 CuentaB->Mostrar();
 	 }
  
@@ -126,6 +126,18 @@
 	 return  "Nombre: " + GetNombreCompleto() +" Telefono: " + GetTelefono() +" Edad: "+cadena + " DNI: " + GetDNI()+ " Email: " + GetEmail()+ " Numero de cuenta: " + ConsultarNumeroCuenta()+ " Saldo: "+ cadena2 ;
 	 }
  
+ void Usuario::UsuarioAFichero(ofstream &archivo)
+	 {
+	 if(archivo.is_open())
+		 {
+		 archivo << GetNombreCompleto() << ";" << GetDNI() << ";" << GetEmail() << ";" << GetTelefono() << ";" << GetEdad() << ";" << ConsultarNumeroCuenta() << ";" << ConsultarSaldo() << endl;
+		 }
+	 else
+		 {
+		 cout << "Error al abrir el archivo" << endl;
+		 }
+	 }
+
  //Desctrcutor
  Usuario::~Usuario() {
 	 delete CuentaB;

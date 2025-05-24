@@ -101,6 +101,8 @@
 			 }
 		 else
 			 cout<< "No se pudo abrir el fichero"<<endl;
+
+		 cout << "Usuarios cargados correctamente." << endl;
 		 }
  
  
@@ -321,7 +323,7 @@ void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
 													{
 														cout << "Usuario con saldo insuficiente, será eliminado." << endl;
 														P->Desalquilar();
-														lUsuarios->Eliminar(usu->GetDNI());
+														this->lUsuarios->Eliminar(DNI);
 													}
 												else
 													{
@@ -408,6 +410,16 @@ void Sistema::buscarPatinetesExtraviados() {
 		if(!encontrado) {
 		cout<<"El patinete perdido es: "<<endl;
 		P1->Mostrar();
+		//Imprimir en el archivo "sistema.log" el nombre del patinete perdido, si no existe el archivo se crea
+		ofstream archivo("sistema.log", ios::app);
+		if(archivo.is_open())
+			{
+			archivo << "Patinete perdido: " << P1->GetModelo() << endl;
+			}
+		else
+			{
+			cout << "No se pudo abrir el archivo sistema.log" << endl;
+			}
 
 		lPatinete->eliminar();
 		}else {
