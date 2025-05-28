@@ -232,8 +232,6 @@ void GestorUsuario::Mostrar() {
 	{
 		KeyValue<string,Usuario*> par;
 		MostrarInorden(aUsuarios);
-		cout << "Usuarios en el sistema: " << endl;
-		cout << par.getKey() << endl;
 		cout << "Profundidad del árbol: " << Profundidad(aUsuarios) << endl;
 	}
 }

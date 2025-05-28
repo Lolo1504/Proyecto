@@ -109,8 +109,10 @@ int main() {
 	delete s;
 	*/
 	PruebaUsuario();
+	PruebaCuentaBancaria();
 	pruebaEstacion();
 	PruebaPatinete();
+	PruebasGestor();
 	//PruebasSistema();
 	return 0;
 }
