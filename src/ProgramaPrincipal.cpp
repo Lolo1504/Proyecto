@@ -46,12 +46,10 @@ int menu(string nombreSistema) {
 }
 
 int main() {
-	/*
-	// TODO Crear un objeto dinámico de la clase Sistema
-	Sistema *s = new Sistema("Sistema de Patinetes");
-
-	//los datos se cargan automáticamente.
-	// TODO no olvidar hacer new
+/*
+ 	 //El fichero usuario.csv se sobreescribe siempre que el gestor sea un arbol, por tanto si el gestor es un arbol no va a haber 2 ejecuciones iguales
+ 	 //Para tener 2 ejecuciones iguales hay que volver a añadir el fichero usuarios.csv que se encuentra en el campus
+		Sistema *s = new Sistema("Sistema de Patinetes");
 	bool salir = false;
 	int opcion;
 	string nombreSistema;
@@ -107,12 +105,12 @@ int main() {
 
 
 	delete s;
-	*/
-	PruebaUsuario();
+*/
+	/*PruebaUsuario();
 	PruebaCuentaBancaria();
 	pruebaEstacion();
 	PruebaPatinete();
-	PruebasGestor();
-	//PruebasSistema();
+	PruebasGestor();*/
+	PruebasSistema();
 	return 0;
 }

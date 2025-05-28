@@ -7,7 +7,7 @@
 
 #include "GestorUsuario.h"
 #include <fstream>
-#if defined(LISTA)
+//#if defined(LISTA)
 GestorUsuario::GestorUsuario() {
 	lUsuario=new ListaDPI<Usuario*>;
 	contador=0;

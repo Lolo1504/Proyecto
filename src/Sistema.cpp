@@ -269,7 +269,7 @@
 	 if(Max!=nullptr)
 		 {
 		 Max->Mostrar();
-		 cout<< "Ha alquilado: "<<max;
+		 cout<< "Ha alquilado: "<<max<<endl;
 		 }
  }
 
@@ -344,14 +344,12 @@ void Sistema::alquilarDevolverUnPatinete(string EstacionAlquilar, string DNI,
 			}
 			else
 				cout << "Estación  de alquiler no encontrada." << endl;
-
 		}
 		else
 		{
 			cout << "No tienes saldo suficiente para alquilar un patinete." << endl;
 		}
 	}
-
 	else
 		{
 		cout << "Usuario no encontrado." << endl;

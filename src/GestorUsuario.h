@@ -7,7 +7,7 @@
 
 #ifndef GESTORUSUARIO_H_
 #define GESTORUSUARIO_H_
-//#define LISTA
+#define LISTA
 #include "BSTree.h"
 #include "KeyValue.h"
 #include "Lista.h"
