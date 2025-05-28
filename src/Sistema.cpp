@@ -411,10 +411,11 @@ void Sistema::buscarPatinetesExtraviados() {
 		cout<<"El patinete perdido es: "<<endl;
 		P1->Mostrar();
 		//Imprimir en el archivo "sistema.log" el nombre del patinete perdido, si no existe el archivo se crea
-		ofstream archivo("sistema.log", ios::app);
+		ofstream archivo("ficheros/sistema.log", ios::app);
 		if(archivo.is_open())
 			{
 			archivo << "Patinete perdido: " << P1->GetModelo() << endl;
+			archivo.close();
 			}
 		else
 			{

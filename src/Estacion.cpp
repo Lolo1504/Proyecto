@@ -51,7 +51,7 @@
  
 			 }
  
-		 this->PatineteAveriado=	new Cola<Patinete *>;
+		 this->PatineteAveriado=new Cola<Patinete *>;
  
  
 		 while(!OtraEstacion.PatineteAveriado->estaVacia())
@@ -70,16 +70,19 @@
 		 delete Aux;
  
 	 }
+
  void Estacion::setId(string Id)
  	 {
 	 identificador=Id;
  	 }
+
  void Estacion::setDireccion(string Direccion)
  	 	 {
  		 direccion=Direccion;
  	 	 }
  void Estacion::setNumeroAlquilados()
  {this->nAlquilados++;}
+
  int Estacion::getNumeroAlquilados()
 	 { return this->nAlquilados; }
 
@@ -88,10 +91,12 @@
 
  int Estacion::getNumeroAveriados()
 	 { return this->NumAveriados; }
+
  string Estacion::getId()
 	 {
 	 return this->identificador;
 	 }
+
  string Estacion::getDireccion()
  	 {
 	 return this->direccion;

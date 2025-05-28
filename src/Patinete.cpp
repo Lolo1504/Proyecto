@@ -104,7 +104,7 @@
 	 }
 	 else
 		 {
-		 cout<<"ID:" <<GetID()<<endl <<"Marca:"<<GetMarca()<<endl<<"Modelo: " <<GetModelo()<<endl<< "Averiado: "<<Averiado<<endl<<"Disponible: "
+		 cout<<"ID: " <<GetID()<<endl <<"Marca: "<<GetMarca()<<endl<<"Modelo: " <<GetModelo()<<endl<< "Averiado: "<<Averiado<<endl<<"Disponible: "
 						 <<"Esta Disponible"<<endl;
 		 }
 	 }

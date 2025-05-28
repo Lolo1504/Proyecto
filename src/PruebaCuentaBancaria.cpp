@@ -4,7 +4,8 @@ using namespace std;
 
 void PruebaCuentaBancaria()
 	{
-	cout << "Inicio Pruebas Cuenta Bancaria"<<endl;
+
+	cout << "INICIO DE PRUEBAS DE CUENTA BANCARIA"<<endl;
 	CuentaBancaria *cB1;
 	cB1=new CuentaBancaria();
 	cB1 ->IngresarSaldo(100);
@@ -37,5 +38,5 @@ void PruebaCuentaBancaria()
 	delete cB1;
 	delete cB2;
 	delete cB3;
-	cout << "Fin pruebas Cuenta Bancaria"<<endl;
+	cout << "FIN PRUEBAS CUENTA BANCARIA"<<endl;
 	}

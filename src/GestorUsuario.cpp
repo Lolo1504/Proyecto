@@ -110,6 +110,7 @@ GestorUsuario::~GestorUsuario() {
 	delete lUsuario;
 }
 
+
 void GestorUsuario::Eliminar(string DNI) {
 	Usuario *u=nullptr;
 	lUsuario->moverPrimero();
@@ -118,6 +119,11 @@ void GestorUsuario::Eliminar(string DNI) {
 		if(lUsuario->consultar()->GetDNI()==DNI)
 			{
 			u=lUsuario->consultar();
+			ofstream archivo("ficheros/sistema.log", ios::app);
+				if(!archivo){
+					cout << "No se pudo abrir el archivo sistema.log" << endl;
+				}
+				archivo << "Eliminando usuario: " << u->GetNombreCompleto() << endl;
 			lUsuario->eliminar();
 			delete u;
 			contador--;
@@ -206,15 +212,13 @@ void GestorUsuario::Eliminar(string DNI) {
 	Usuario *u=nullptr;
 	par=KeyValue<string,Usuario*>(DNI,u);
 	//Imprimir en el archivo "sistema.log" el DNI del usuario que se elimina, si no existe el archivo se crea
-	cout <<"Debug 1" << endl;
-	ofstream archivo("sistema.log", ios::app);
-	cout <<"Debug 2" << endl;
+	ofstream archivo("ficheros/sistema.log", ios::app);
 	if(!archivo){
 		cout << "No se pudo abrir el archivo sistema.log" << endl;
 	}
-	cout <<"Debug 3" << endl;
 	Buscar(DNI, u);
 	archivo << "Eliminando usuario: " << u->GetNombreCompleto() << endl;
+	archivo.close();
 	aUsuarios->eliminar(par);
 	contador--;
 	}
@@ -300,11 +304,12 @@ void GestorUsuario::RecorrerArbol(BSTree<KeyValue<string, Usuario*> > *a, ofstre
 void GestorUsuario::ActualizarArchivo() {
 	ofstream archivo("ficheros/usuarios.csv", ios::trunc);
 	if(!archivo) {
-		cout << "No se pudo abrir el archivo usuarios.txt" << endl;
+		cout << "No se pudo abrir el archivo usuarios.csv" << endl;
 		return;
 	}
 	archivo << "NOMBRE COMPLETO;DNI;CORREO;TELÉFONO;EDAD;N.CUENTA;SALDO" << endl;
 	RecorrerArbol(aUsuarios, archivo);
+	archivo.close();
 }
 
 GestorUsuario::~GestorUsuario()

@@ -134,7 +134,7 @@
 	 // PRE: -
 	 // POST: Libera toda la memoria utilizada por el sistema
 	 // DESC: Elimina todos los usuarios, patinetes y estaciones
-	 // Complejidad: O(n) donde n=usuarios, m=patinetes, p=estaciones
+	 // Complejidad: O(n) donde n=usuarios, m=patinetes y p=estaciones
 	 virtual ~Sistema();
  };
  

@@ -18,11 +18,11 @@ void PruebasSistema()
 	s->mostrarEstaciones();
 	s->alquilarDevolverPatinetes();
 
-	//cout << "Prueba constructor por copia"<<endl;
-	//Sistema *s1= new Sistema(*s);
-	//s1->mostrarUsuarios();
+	cout << "Prueba constructor por copia"<<endl;
+	Sistema *s1= new Sistema(*s);
+	s1->mostrarUsuarios();
 	delete s;
-	//delete s1;
+	delete s1;
 	}
 
 

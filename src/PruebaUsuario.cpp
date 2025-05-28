@@ -12,13 +12,15 @@ using namespace std;
 
 
 void PruebaUsuario()
-	{//En esta priera prueba creamos un usuario con el constructor por defecto y usaremos los metodos de set y get para
+	{
+	cout<<"INICIO PRUEBAS DE USUARIO"<<endl;
+	//En esta priera prueba creamos un usuario con el constructor por defecto y usaremos los metodos de set y get para
 	//comporbar su funcionamiento
 	Usuario user1;
 	string NombreCompleto ;
 
 	user1.SetNombreCompleto("Juan Jose Galindo Cotano");
-	user1.SetTelefono("+34 699 99 25 24");
+	user1.SetTelefono("+34 699 99 25 24");//Aclaracion, el numero de telefono es inventado, aun asi no se si pertenece a alguien o no
 	user1.SetEdad(21);
 	user1.SetDNI("7909028Z");
 	user1.SetEmail("Galingod@gmail.com");
@@ -70,5 +72,5 @@ void PruebaUsuario()
 	   Usuario user3(user2);
 	   user3.Mostrar();
 
-
+	   cout<<"FIN PRUEBAS DE USUARIOS"<<endl;
 	}
